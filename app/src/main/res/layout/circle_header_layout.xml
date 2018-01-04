@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:paddingBottom="20dp">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/circle_banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        />
+
+    <ImageView
+        android:id="@+id/circle_avatar"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/circle_banner"
+        android:layout_marginEnd="20dp"
+        android:background="#faebd7"
+        android:layout_marginTop="-50.0dip"
+        android:padding="0.100000024dip"/>
+
+    <TextView
+        android:id="@+id/circle_name_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@+id/circle_banner"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="-30.0dip"
+        android:layout_toStartOf="@+id/circle_avatar"
+        android:shadowColor="#ff000000"
+        android:shadowDx="0.0"
+        android:shadowDy="2.0"
+        tools:text="回魔亦喜爱哦"
+        android:shadowRadius="1.0"
+        android:textColor="#ffffff"
+        android:textSize="16dp"/>
+
+</RelativeLayout>

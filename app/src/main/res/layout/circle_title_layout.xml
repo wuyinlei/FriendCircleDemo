@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/action_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/action_mindcirrcle_message"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        >
+
+        <ImageView
+            android:id="@+id/action_mindcircle_view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true"
+            android:background="#ffffffff"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/action_mindtitle_view"
+        android:layout_width="250.0dip"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/action_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_mindcircle"
+            android:textColor="#a4a4a4"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/action_mindcirrcle_publish"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/action_create_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:background="#ffffff"
+            android:visibility="visible"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_below="@+id/action_mindcirrcle_message"
+        android:background="#ECECEC"/>
+</RelativeLayout>

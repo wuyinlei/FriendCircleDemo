@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mRvCircleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +16,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mRvCircleView = findViewById(R.id.rv_circle_view);
     }
 }
