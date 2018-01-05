@@ -19,6 +19,8 @@ import org.apmem.tools.layouts.FlowLayout;
 import java.util.LinkedList;
 import java.util.List;
 
+import ruolan.com.friendcircledemo.model.ImageInfo;
+
 
 /**
  * Created by 大灯泡 on 2016/11/9.
@@ -36,9 +38,14 @@ import java.util.List;
  * 3、修复不同形式的显示规则复用问题
  * <p>
  * 待更新点:
- * 1、显示的数据结构更改,支持视频、视频时长、单张图片的图片宽和高
- * 2、单张图片按照微信朋友圈的显示规则(长>高   高>长   长=高)
- * 3、待完善。。
+// * 1、显示的数据结构更改,支持视频、视频时长、单张图片的图片宽和高
+// * 2、
+// * 3、待完善。。
+ *
+ * 上述待更新点已经完善
+ *
+ * 待完善
+ * 1、单张图片按照微信朋友圈的显示规则(长>高   高>长   长=高)
  * <p>
  * </p>
  */
@@ -229,12 +236,22 @@ public class PhotoContents extends FlowLayout {
 
     private ImageView obtainView(int position) {
 
+        boolean longPic = false;
+        boolean videoTrue = false;
+        String videoTime = "";
+
         ImageView cachedView;
         ImageView child;
         //一张图片的情景
         if (mItemCount == 1) {
             cachedView = recycler.getSingleCachedView();
-            child = mAdapter.onCreateView(cachedView, this, position, true, false, "");
+            if (mAdapter.getDatas()!= null){
+                ImageInfo imageInfo = mAdapter.getDatas().get(0);
+                longPic = imageInfo.isLongPic();
+                videoTrue = imageInfo.isVideo();
+                videoTime = imageInfo.getLivelength();
+            }
+            child = mAdapter.onCreateView(cachedView, this, position, videoTrue, longPic, videoTime);
             //当为2张图片的情景
         } else if (mItemCount == 2) {
             cachedView = recycler.getTwoCachedViews(position);

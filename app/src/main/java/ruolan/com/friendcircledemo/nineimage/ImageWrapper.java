@@ -15,6 +15,7 @@ import android.graphics.drawable.StateListDrawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 
 import ruolan.com.friendcircledemo.R;
 import ruolan.com.friendcircledemo.utils.DisplayUtil;
@@ -41,7 +42,7 @@ public class ImageWrapper extends android.support.v7.widget.AppCompatImageView {
 
     private TextPaint textPaint;              //文字的画笔
     private String mVideoTime = "";                  //要绘制的文字
-
+    private static float scale;
 
 
     public ImageWrapper(Context context, boolean videoTrue, boolean longPic,String videoTime) {
@@ -67,11 +68,16 @@ public class ImageWrapper extends android.support.v7.widget.AppCompatImageView {
 
     private void initTextPaint() {
 
+        //转化单位
+        textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, textSize, getContext().getResources().getDisplayMetrics());
+
         textPaint = new TextPaint();
         textPaint.setTextAlign(Paint.Align.CENTER);  //文字居中对齐
         textPaint.setAntiAlias(true);                //抗锯齿
         textPaint.setTextSize(textSize);             //设置文字大小
         textPaint.setColor(textColor);
+
+        scale = getResources().getDisplayMetrics().density;
 
     }
 
@@ -126,15 +132,13 @@ public class ImageWrapper extends android.support.v7.widget.AppCompatImageView {
         //  视频的时候的视频标志
         if (mVideoTrue) {
 
-            //绘制视频时长
-            if (!TextUtils.isEmpty(mVideoTime)) {
-
+            if (!TextUtils.isEmpty(mVideoTime)){
                 Paint pFont = new Paint();
                 Rect rect = new Rect();
                 pFont.getTextBounds(mVideoTime, 0, mVideoTime.length(), rect);
 
-                float baseY = getHeight() - rect.height() - DisplayUtil.dip2px(3);
-                float baseX = getWidth() - rect.width() + (textPaint.ascent() + textPaint.descent())/2  - DisplayUtil.dip2px(10);
+                float baseY = getHeight() - rect.height() - dip2px(3);
+                float baseX = getWidth() - rect.width() + (textPaint.ascent() + textPaint.descent())/2  - dip2px(10);
 
                 canvas.drawText(mVideoTime, baseX, baseY, textPaint);
             }
@@ -145,15 +149,15 @@ public class ImageWrapper extends android.support.v7.widget.AppCompatImageView {
             // 指定图片绘制区域(全部的bitmap需要画)
             Rect src = new Rect(0, 0, bm.getWidth(), bm.getHeight());
             // 指定图片在屏幕上显示的区域
-            Rect dst = new Rect(0, 0, DisplayUtil.dip2px(34), DisplayUtil.dip2px(34));
+            Rect dst = new Rect(0, 0, dip2px(34), dip2px(34));
             canvas.drawBitmap(bm, src, dst, textPaint);
         } else if (mLongPic) {
             Bitmap bm = BitmapFactory.decodeResource(getContext().getResources(), R.mipmap.pic_long);//图片
-            canvas.translate(getWidth() - bm.getWidth() - DisplayUtil.dip2px(3), getHeight() - bm.getHeight() -  DisplayUtil.dip2px(3));
+            canvas.translate(getWidth() - bm.getWidth() - dip2px(3), getHeight() - bm.getHeight() -  dip2px(3));
             // 指定图片绘制区域(全部的bitmap需要画)
             Rect src = new Rect(0, 0, bm.getWidth(), bm.getHeight());
             // 指定图片在屏幕上显示的区域
-            Rect dst = new Rect(0, 0, DisplayUtil.dip2px(29), DisplayUtil.dip2px(15));
+            Rect dst = new Rect(0, 0, dip2px(29), dip2px(15));
             canvas.drawBitmap(bm, src, dst, textPaint);
         }
     }
@@ -162,6 +166,19 @@ public class ImageWrapper extends android.support.v7.widget.AppCompatImageView {
         super.onSizeChanged(w, h, oldw, oldh);
         if (mForegroundDrawable != null) mCachedBounds.set(0, 0, w, h);
     }
+
+
+    public static int dip2px(int dipValue) {
+        return (int) (dipValue * scale + 0.5f);
+    }
+
+    /**
+     * 根据手机分辨率 从px转为dp
+     */
+    private static int px2dp(int pxValue) {
+        return (int) (pxValue / scale + 0.5f);
+    }
+
 
 
 }

@@ -1,6 +1,8 @@
 package ruolan.com.friendcircledemo.net;
 
 
+import android.view.PixelCopy;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -45,7 +47,7 @@ public class RestClient {
     }
 
     private static final class RetrofitHolder{
-        private static final String BASE_URL = "";
+        private static final String BASE_URL = "https://easy-mock.com/mock/5a4eec8edd9300700adaf39b/";
 
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -55,8 +57,8 @@ public class RestClient {
 
     }
 
-    private static final class RestServiceHolder{
-        private static final RemoteService REMOTE_SERVICE = RetrofitHolder.RETROFIT_CLIENT
+    public static final class RestServiceHolder{
+        public static final RemoteService REMOTE_SERVICE = RetrofitHolder.RETROFIT_CLIENT
                 .create(RemoteService.class);
     }
 

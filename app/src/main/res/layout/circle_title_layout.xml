@@ -12,7 +12,7 @@
         android:layout_height="56dp"
         >
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/action_mindcircle_view"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -31,7 +31,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/action_bar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         android:gravity="center"
         >
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/action_create_btn"
             android:layout_width="24dp"
             android:layout_height="24dp"

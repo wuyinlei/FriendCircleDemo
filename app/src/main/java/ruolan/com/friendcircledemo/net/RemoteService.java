@@ -4,6 +4,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import ruolan.com.friendcircledemo.model.FriendCircleModel;
+import ruolan.com.friendcircledemo.model.HttpResult;
 import ruolan.com.friendcircledemo.model.ImageInfo;
 
 /**
@@ -12,7 +14,7 @@ import ruolan.com.friendcircledemo.model.ImageInfo;
 
 public interface RemoteService {
 
-    @GET
-    Call<List<ImageInfo>> getFriendCircleData();
+    @GET("friendcircle/friendcircle")
+    Call<HttpResult<FriendCircleModel>> getFriendCircleData();
 
 }

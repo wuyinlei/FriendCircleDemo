@@ -1,5 +1,7 @@
 package ruolan.com.friendcircledemo.model;
 
+import android.text.TextUtils;
+
 /**
  * Created by wuyinlei on 2018/1/4.
  *
@@ -18,7 +20,17 @@ public class ImageInfo extends BaseModel{
     private String livelength;  //视频时长
     private boolean isVideo = false;  //是否是视频类型
     private boolean isLongPic = false;  //是否是单张图片的长图类型
+    private boolean singlePic = false;
     private String videopath;  //视频地址
+
+
+    public void setSinglePic(boolean singlePic) {
+        this.singlePic = singlePic;
+    }
+
+    public boolean isSinglePic() {
+        return singlePic;
+    }
 
     public String getThumbnailUrl() {
         return thumbnailUrl;

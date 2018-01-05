@@ -4,6 +4,10 @@ import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.util.List;
+
+import ruolan.com.friendcircledemo.model.ImageInfo;
+
 
 /**
  * Created by 大灯泡 on 2016/11/9.
@@ -51,4 +55,6 @@ public abstract class PhotoContentsBaseAdapter {
     public abstract void onBindData(int position, @NonNull ImageView convertView);
 
     public abstract int getCount();
+
+    public abstract List<ImageInfo> getDatas();
 }
