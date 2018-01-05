@@ -67,6 +67,7 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
         mInnerContainerAdapter = new InnerContainerAdapter(holder.itemView.getContext(), imageInfos);
         holder.mPhotoContents.setAdapter(mInnerContainerAdapter);
 
+
     }
 
     private ImageInfo parseImageInfo(FriendCircleModel.ListBean listBean) {
@@ -113,9 +114,16 @@ public class FriendCircleAdapter extends RecyclerView.Adapter<FriendCircleAdapte
 
         private PhotoContents mPhotoContents;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             mPhotoContents = itemView.findViewById(R.id.nine_photo_content);
+
+            mPhotoContents.setmOnItemClickListener(new PhotoContents.OnItemClickListener() {
+                @Override
+                public void onItemClick(List<ImageInfo> imageInfos, int position) {
+                    ActivityRouter.Router(imageInfos,position,itemView.getContext());
+                }
+            });
         }
     }
 

@@ -1,6 +1,5 @@
 package ruolan.com.friendcircledemo.model;
 
-import android.text.TextUtils;
 
 /**
  * Created by wuyinlei on 2018/1/4.

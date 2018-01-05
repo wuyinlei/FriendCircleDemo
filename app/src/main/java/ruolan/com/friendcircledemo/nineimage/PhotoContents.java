@@ -46,6 +46,8 @@ import ruolan.com.friendcircledemo.model.ImageInfo;
  *
  * 待完善
  * 1、单张图片按照微信朋友圈的显示规则(长>高   高>长   长=高)
+ *
+ * 上述待完善的已经完善了
  * <p>
  * </p>
  */
@@ -100,10 +102,10 @@ public class PhotoContents extends FlowLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int childRestWidth = widthSize - getPaddingLeft() - getPaddingRight();
-        Log.d("PhotoContents", "childRestWidth:" + childRestWidth);
+        //当数据为两个图片的时候  这个宽度要为全部宽度的1/2
         if (updateItemCount() == 2) {
             multiChildSize = childRestWidth / 2 - itemMargin;
-        } else {
+        } else {   //其他宽度  统一为三分之一
             multiChildSize = childRestWidth / 3 - itemMargin * 2;
         }
         //可以在这里设置宽度和高度  当然需要根据获取到的adapter里面的数据来规定
@@ -245,6 +247,7 @@ public class PhotoContents extends FlowLayout {
         //一张图片的情景
         if (mItemCount == 1) {
             cachedView = recycler.getSingleCachedView();
+            //一张图片的时候  这个地方要获取到ImageInfo的数据  然后通过获取里面的是否是长图  是否是视频  视频时长等
             if (mAdapter.getDatas()!= null){
                 ImageInfo imageInfo = mAdapter.getDatas().get(0);
                 longPic = imageInfo.isLongPic();
@@ -412,7 +415,7 @@ public class PhotoContents extends FlowLayout {
     public boolean performItemClick(ImageView view, int position) {
         final boolean result;
         if (mOnItemClickListener != null) {
-            mOnItemClickListener.onItemClick(view, position);
+            mOnItemClickListener.onItemClick(mAdapter.getDatas(), position);
             result = true;
         } else {
             result = false;
@@ -658,6 +661,6 @@ public class PhotoContents extends FlowLayout {
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
-        void onItemClick(ImageView view, int position);
+        void onItemClick(List<ImageInfo> imageInfos, int position);
     }
 }
